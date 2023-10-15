@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     'Pagina1',
     'Pagina2',
     'Pagina3',
+    'Identificacion',
+    
 ]
 
 MIDDLEWARE = [

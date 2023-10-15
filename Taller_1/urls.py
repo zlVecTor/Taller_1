@@ -21,12 +21,14 @@ from Base import views as app
 from Pagina1 import views as app1
 from Pagina2 import views as app2
 from Pagina3 import views as app3
+from Identificacion import views as ident
 
 urlpatterns = [
     path('admin/', admin.site.urls),
   #  path('mensaje/', app.texto),
-    path('', app.indexTemplates),
+    path('Menu/', app.indexTemplates),
     path('Pagina1/', app1.Pagina1Template),
     path('Pagina2/', app2.Pagina2Template),
     path('Pagina3/', app3.Pagina3Template),
+    path('', ident.IdentificacionTemplate),
 ]
