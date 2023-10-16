@@ -25,10 +25,16 @@ from Identificacion import views as ident
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-  #  path('mensaje/', app.texto),
-    path('Menu/', app.indexTemplates),
+    path('Menu/', app.indexTemplates, name='menu'),
     path('Pagina1/', app1.Pagina1Template),
     path('Pagina2/', app2.Pagina2Template),
     path('Pagina3/', app3.Pagina3Template),
     path('', ident.IdentificacionTemplate),
+
+#esto es el sistema de login, funciona si, y lo que funciona no c toca
+    path('registro/', ident.registro_view, name='registro'),
+    path('inicio-sesion/', ident.inicio_sesion_view, name='inicio-sesion'),
+
+
+
 ]

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro y Login</title>
 
+    <!-- Agrega aquí otros encabezados como enlaces a hojas de estilo, etc. si es necesario -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" 
         rel="stylesheet" 
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" 
@@ -12,13 +13,16 @@
     />
 </head>
 <body>
+    
     <h1 class="text-center">Registro y Login</h1>
+
     <div class="text-center">
         <div id="registro-form" class="container">
             <h2>Registro</h2>
             <div class="card">
                 <div class="card-body">
-                    <form action="procesar_registro.php" method="post">
+                    <form action="{% url 'registro' %}" method="post">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="nombre">Nombre:</label>
                             <input type="text" id="nombre" name="nombre" class="form-control" required>
@@ -36,10 +40,7 @@
 
                         <br>
                         <div>
-                        <input  type="submit" value="Registrar" class="btn btn-primary" >
-                        <!--  -->
-                        <!-- ESTO ES DE PRUEBA AUN :D -->
-                        <a href="../Menu/" class="btn btn-primary">reg. prueba</a> 
+                            <input type="submit" value="Registrar" class="btn btn-primary">
                         </div>
                     </form>
                 </div>
@@ -52,7 +53,8 @@
             <h2>Iniciar Sesión</h2>
             <div class="card">
                 <div class="card-body">
-                    <form action="procesar_login.php" method="post">
+                    <form action="{% url 'inicio-sesion' %}" method="post">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="email-login">Correo Electrónico:</label>
                             <input type="email" id="email-login" name="email-login" class="form-control" required>
@@ -64,28 +66,31 @@
                         </div>
 
                         <input type="submit" value="Iniciar Sesión" class="btn btn-primary">
-                        <!-- ESTO ES DE PRUEBA AUN :D -->
-                        <a href="../Menu/" class="btn btn-primary">Log. prueba</a> 
                     </form>
                 </div>
             </div>
-
             <br>
             <button onclick="mostrarFormularioRegistro()">Registrarse</button>
         </div>
-
-        <script>
-            function mostrarFormularioLogin() {
-                document.getElementById("registro-form").style.display = "none";
-                document.getElementById("login-form").style.display = "block";
-            }
-
-            function mostrarFormularioRegistro() {
-                document.getElementById("login-form").style.display = "none";
-                document.getElementById("registro-form").style.display = "block";
-            }
-            
-        </script>
     </div>
+<!-- Mensaje de registro exitoso -->
+    <div class="messages">
+        {% for message in messages %}
+            <div class="message {{ message.tags }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+    <script>
+        function mostrarFormularioLogin() {
+            document.getElementById("registro-form").style.display = "none";
+            document.getElementById("login-form").style.display = "block";
+        }
+
+        function mostrarFormularioRegistro() {
+            document.getElementById("login-form").style.display = "none";
+            document.getElementById("registro-form").style.display = "block";
+        }
+    </script>
 </body>
 </html>
